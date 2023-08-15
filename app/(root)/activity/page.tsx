@@ -3,7 +3,7 @@ import ProfileHeader from "@/components/shared/ProfileHeader"
 import ThreadsTab from "@/components/shared/ThreadsTab"
 import { profileTabs } from "@/constants"
 import { fetchUser, fetchUsers, getActivity } from "@/lib/actions/user.actions"
-import { currentUser } from "@clerk/nextjs"
+import { auth, currentUser } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 import { redirect } from 'next/navigation'
@@ -42,10 +42,16 @@ async function Page() {
                             <Image 
                             src={activity.author.image}
                             alt="Profile Picture"
-                            width={20}
-                            height={20}
-                            className="rounde-full object-cover"
+                            width={30}
+                            height={30}
+                            className="rounded-full object-cover"
                             />
+                            <p className="!text-small-regular text-light-1">
+                                <span className="mr-1 text-primary-500">
+                                    {activity.author.name}
+                                </span>{" "}
+                                replied to your thread
+                            </p>
                          </article>
                     </Link>
                 })}
